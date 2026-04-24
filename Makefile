@@ -6,8 +6,9 @@ GOOS ?= $(shell go env GOOS)
 GOARCH ?= $(shell go env GOARCH)
 
 VERSION ?= $(shell git describe --tags)
-REPO ?= quay.io/minio
-TAG ?= $(REPO)/minio:$(VERSION)
+REPO ?= ghcr.io/openstore
+IMAGE_NAME ?= openstore
+TAG ?= $(REPO)/$(IMAGE_NAME):$(VERSION)
 
 GOLANGCI_DIR = .bin/golangci/$(GOLANGCI_VERSION)
 GOLANGCI = $(GOLANGCI_DIR)/golangci-lint

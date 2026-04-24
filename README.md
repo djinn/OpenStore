@@ -98,17 +98,17 @@ For application developers, see <https://docs.min.io/enterprise/aistor-object-st
 You can use the `docker build .` command to build a Docker image on your local host machine.
 You must first [build MinIO](#install-from-source) and ensure the `minio` binary exists in the project root.
 
-The following command builds the Docker image using the default `Dockerfile` in the root project directory with the repository and image tag `myminio:minio`
+The following command builds the Docker image using the default `Dockerfile` in the root project directory with the repository and image tag `openstore:latest`
 
 ```sh
-docker build -t myminio:minio .
+docker build -t openstore:latest .
 ```
 
 Use `docker image ls` to confirm the image exists in your local repository.
 You can run the server using standard Docker invocation:
 
 ```sh
-docker run -p 9000:9000 -p 9001:9001 myminio:minio server /tmp/minio --console-address :9001
+docker run -p 9000:9000 -p 9001:9001 openstore:latest server /tmp/minio --console-address :9001
 ```
 
 Complete documentation for building Docker containers, managing custom images, or loading images into orchestration platforms is out of scope for this documentation.

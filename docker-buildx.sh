@@ -10,9 +10,11 @@ function _init() {
 	## List of architectures and OS to test coss compilation.
 	SUPPORTED_OSARCH="linux/ppc64le linux/amd64 linux/arm64"
 
+	PUBLISH_REPO="${PUBLISH_REPO:-ghcr.io/openstore/openstore}"
+
 	remote=$(git remote get-url upstream)
-	if test "$remote" != "git@github.com:minio/minio.git"; then
-		echo "Script requires that the 'upstream' remote is set to git@github.com:minio/minio.git"
+	if [ -n "${EXPECTED_UPSTREAM:-}" ] && test "$remote" != "$EXPECTED_UPSTREAM"; then
+		echo "Script requires that the 'upstream' remote is set to ${EXPECTED_UPSTREAM}"
 		exit 1
 	fi
 
@@ -56,8 +58,8 @@ function main() {
 
 	docker buildx build --push --no-cache \
 		--build-arg RELEASE="${release}" \
-		-t "registry.min.dev/community/minio:latest" \
-		-t "registry.min.dev/community/minio:${release}" \
+		-t "${PUBLISH_REPO}:latest" \
+		-t "${PUBLISH_REPO}:${release}" \
 		--platform=linux/arm64,linux/amd64,linux/ppc64le \
 		-f Dockerfile .
 
