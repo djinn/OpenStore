@@ -1,13 +1,21 @@
-> [!NOTE]
-> **THIS REPOSITORY IS NO LONGER MAINTAINED.**
->
-> **Alternatives:**
-> - **[AIStor Free](https://min.io/download)** — Full-featured, standalone edition for community use (free license)
-> - **[AIStor Enterprise](https://min.io/pricing)** — Distributed edition with commercial support
+# OpenStore
+
+OpenStore is a fork of [MinIO](https://github.com/minio/minio), and remains based on the MinIO object storage server architecture, APIs, and core implementation.
+
+## Attribution
+
+This project builds on the original work of the MinIO authors and contributors.
+OpenStore reuses and adapts upstream MinIO code under the terms of the applicable licenses in this repository.
+
+## Goals Of This Fork
+
+- Maintain a community-focused MinIO-based object storage distribution under the OpenStore project.
+- Provide a stable, transparent fork where development priorities are driven by OpenStore maintainers and contributors.
+- Continue improving S3-compatible object storage behavior while preserving compatibility for existing MinIO users where practical.
 
 ---
 
-# MinIO Quickstart Guide
+# OpenStore (MinIO-Based) Quickstart Guide
 
 [![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io) [![Docker Pulls](https://img.shields.io/docker/pulls/minio/minio.svg?maxAge=604800)](https://hub.docker.com/r/minio/minio/) [![license](https://img.shields.io/badge/license-AGPL%20V3-blue)](https://github.com/minio/minio/blob/master/LICENSE)
 

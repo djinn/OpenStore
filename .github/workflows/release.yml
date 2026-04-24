@@ -28,6 +28,16 @@ jobs:
           cp ./minio ./dist/openstore-linux-amd64
           sha256sum ./dist/openstore-linux-amd64 > ./dist/openstore-linux-amd64.sha256
 
+      - name: Prepare Docker build context
+        run: |
+          RELEASE="${{ github.ref_name }}"
+          ARCH="amd64"
+          BIN="minio-${ARCH}.${RELEASE}"
+          cp ./minio "./${BIN}"
+          sha256sum < "./${BIN}" | sed "s, -,${BIN},g" > "./${BIN}.sha256sum"
+          # Signature file is expected by Dockerfile; release workflow does not sign artifacts.
+          touch "./${BIN}.minisig"
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -46,5 +56,5 @@ jobs:
       - name: Build and push image
         run: |
           TAG="ghcr.io/${{ github.repository_owner }}/openstore:${{ github.ref_name }}"
-          docker build -t "${TAG}" .
+          docker build --build-arg TARGETARCH=amd64 --build-arg RELEASE="${{ github.ref_name }}" -t "${TAG}" .
           docker push "${TAG}"
